@@ -1,0 +1,16 @@
+<section class="top-nav">
+  <div>
+    <!-- Logo placeholder -->
+  </div>
+  <input id="menu-toggle" type="checkbox" />
+  <label class='menu-button-container' for="menu-toggle">
+  <div class='menu-button'></div>
+</label>
+  <ul class="menu">
+    <li *ngFor="let nav of navList"
+    [routerLink]="nav.path"
+    routerLinkActive="nav-underline"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >{{nav.title}}</li>
+  </ul>
+</section>

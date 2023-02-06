@@ -1,0 +1,43 @@
+<form [formGroup]="createFrom" (ngSubmit)="saveForm()">
+  <div class="input-wrapper">
+    <div class="label">Title</div>
+    <input type="text" formControlName="text" />
+  </div>
+  <div class="input-wrapper question-type">
+    <div class="label">Question type</div>
+    <label for="radio1">
+      <div>Trivia</div>
+      <input id="radio1" type="radio" value="1" formControlName="type" />
+    </label>
+    <label for="radio2">
+      <div>Poll</div>
+      <input id="radio2" type="radio" value="2" formControlName="type" />
+    </label>
+  </div>
+  <div class="input-wrapper" *ngIf="questionType === '1'">
+    <div class="label">Correct answer</div>
+    <div class="dropdown-wrapper" (click)="openDropdown()">
+      <div class="dropdown-correct-wrapper">Select correct answer</div>
+       <div class="arrow" [class.up]="correctAnswerOpen" [class.down]="!correctAnswerOpen"></div>
+      </div>
+      <ng-container *ngIf="correctAnswerOpen">
+        <div class="dropdown-list" *ngFor="let answer of answers.controls; let i = index" (click)="setCorrectAnswer(answer.value)">
+          <div>{{answer.value}}</div>
+        </div>
+      </ng-container>
+    <input hidden type="text" formControlName="correct_answer" />
+  </div>
+  <div class="answers" formArrayName="list_of_answers">
+    <div class="label">Answers</div>
+    <div *ngFor="let answer of answers.controls; let i = index" class="answer-inner-wrapper">
+      <input type="text" [formControlName]="i" />
+      <div class="close" (click)="removeAnswer(i)">x</div>
+    </div>
+    <button type="button" class="new-answer" (click)="addNewAnswer()">Add new answer</button>
+  </div>
+  <div>
+    <button type="submit">Save</button>
+  </div>
+</form>
+
+<app-banner *ngIf="showBanner" [text]="bannerText"></app-banner>

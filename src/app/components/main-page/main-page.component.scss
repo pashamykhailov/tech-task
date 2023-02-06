@@ -1,0 +1,15 @@
+.wrapper, h3, .second-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.wrapper {
+  flex-wrap: wrap;
+}
+
+ul { 
+  list-style: none;
+  padding: 0;
+}

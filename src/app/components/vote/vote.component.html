@@ -1,0 +1,17 @@
+<div><h3>Hi! Please vote for right answers, good luck.</h3></div>
+<div class="questions-wrapper">
+  <div class="qeustion" *ngFor="let question of questions; let i = index">
+    <div class="question-inner-wrapper">
+      <div class="question-text" (click)="openAnswers(i)">
+        {{ question.text }}
+        <div class="arrow" [class.up]="openIndex == i" [class.down]="openIndex !== i"></div>
+      </div>
+      <div class="question-data" *ngIf="openIndex === i">
+        <div class="answer" *ngFor="let item of question.list_of_answers.split(',')">
+          <div class="answer-text">{{ item }}</div>
+          <button class="vote" (click)="vote(question.id, item)">vote</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
